@@ -3,11 +3,10 @@ import "../styles/Jumbotron.css";
 
 function Jumbotron() {
   return (
-    <div className="jumbotron">
-      <h1>Clicky Game</h1>
-      <p>
-        Click on an image to earn points, but don't click an image more than once!
-      </p>
+    <div id="jumbo">
+      <h1 id="description">
+        Click on plant to water it and collect points, but don't water the plants twice!
+      </h1>
     </div>
   );
 }
