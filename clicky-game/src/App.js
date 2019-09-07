@@ -5,21 +5,36 @@ import Card from "./components/Card";
 import Wrapper from "./components/Wrapper";
 import pics from "./pics.json";
 
-let score = 0;
-let highScore = 0;
-
 class App extends Component {
 
   // Setting this.state.pics to the pics json array
   state = {
-    pics
+    pics,
+    score: 0,
+    highScore: 0,
+    clickedArray: []
+  };
+
+
+//need to check on each click if the image is in the clickedArray
+
+  handleIncrement = (id) => {
+    const clickedArrayCopy = [...this.state.clickedArray];
+    clickedArrayCopy.push(id);
+    this.setState({clickedArray: clickedArrayCopy})
+    // We always use the setState method to update a component's state
+    this.setState({ score: this.state.score + 1 });
+    const picsCopy = [...this.state.pics];
+    picsCopy.sort(() => Math.random() - 0.5);
+    this.setState({pics:picsCopy});
   };
 
   render() {
     return (
     <div>
       
-      <Banner />
+      <Banner score={this.state.score}
+      highScore={this.state.highScore}/>
       <Jumbotron />
       <Wrapper>
       {this.state.pics.map(pic => (
@@ -28,6 +43,7 @@ class App extends Component {
             key={pic.id}
             name={pic.name}
             image={pic.image}
+            onClick={this.handleIncrement}
           />
         ))}
       </Wrapper>

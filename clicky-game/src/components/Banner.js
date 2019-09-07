@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Banner.css";
 
-function Banner() {
+function Banner (props){
   return (
     <nav className="navbar">
       <ul>
@@ -12,14 +12,15 @@ function Banner() {
           <p>Click on a plant to begin.</p>
         </li>
         <li>
-          <p id="highScore">High Score: </p>
+          <p id="highScore">High Score: {props.highScore} </p>
         </li>
         <li>
-          <p id="score">Score: </p>
+          <p id="score">Score: {props.score}</p>
         </li>
       </ul>
     </nav>
   );
+
 }
 
 export default Banner;
