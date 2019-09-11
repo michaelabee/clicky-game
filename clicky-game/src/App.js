@@ -12,18 +12,25 @@ class App extends Component {
     pics,
     score: 0,
     highScore: 0,
-    clickedArray: []
+    clickedArray: [],
+    currentStatus:"Click on a plant to begin",
   };
-
-
-//need to check on each click if the image is in the clickedArray
 
   handleIncrement = (id) => {
     const clickedArrayCopy = [...this.state.clickedArray];
     clickedArrayCopy.push(id);
-    this.setState({clickedArray: clickedArrayCopy})
-    // We always use the setState method to update a component's state
-    this.setState({ score: this.state.score + 1 });
+    this.setState({clickedArray: clickedArrayCopy});
+
+    if(this.state.clickedArray.includes(id)){
+      this.setState({score:0, clickedArray:[], currentStatus:"You watered a plant twice! Click on an image to start again."})
+    }else{
+      this.setState({ score: this.state.score + 1, currentStatus:"Watering!" });
+    };
+
+    if(this.state.score>this.state.highScore){
+      this.setState({highScore: this.state.score})
+    }
+
     const picsCopy = [...this.state.pics];
     picsCopy.sort(() => Math.random() - 0.5);
     this.setState({pics:picsCopy});
@@ -33,8 +40,10 @@ class App extends Component {
     return (
     <div>
       
-      <Banner score={this.state.score}
-      highScore={this.state.highScore}/>
+      <Banner 
+      score={this.state.score}
+      highScore={this.state.highScore}
+      currentStatus={this.state.currentStatus}/>
       <Jumbotron />
       <Wrapper>
       {this.state.pics.map(pic => (

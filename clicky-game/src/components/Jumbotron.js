@@ -5,7 +5,7 @@ function Jumbotron() {
   return (
     <div id="jumbo">
       <h1 id="description">
-        Click on plant to water it and collect points, but don't water the plants twice!
+        Click on a plant to water it and collect points, but don't water the plants twice!
       </h1>
     </div>
   );

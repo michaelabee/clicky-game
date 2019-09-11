@@ -9,7 +9,7 @@ function Banner (props){
           <p>Memory Garden</p>
         </li>
         <li>
-          <p>Click on a plant to begin.</p>
+          <p id="currentTitle"> {props.currentStatus} </p>
         </li>
         <li>
           <p id="highScore">High Score: {props.highScore} </p>
